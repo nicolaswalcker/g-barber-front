@@ -9,6 +9,10 @@
       :type="inputType"
       class="input__field"
       :placeholder="inputPlaceholder"
+      :name="inputName"
+      :value="value"
+      v-bind="$attrs"
+      @input="updateValue($event.target.value)"
     >
   </div>
 </template>
@@ -22,6 +26,7 @@ export default {
     MailIcon,
     UserIcon,
   },
+  inheritAttrs: false,
   props: {
     inputType: {
       type: String,
@@ -29,11 +34,19 @@ export default {
     },
     inputPlaceholder: {
       type: String,
-      default: 'Email',
+      default: 'E-mail',
     },
     inputIcon: {
       type: String,
       default: 'mail',
+    },
+    inputName: {
+      type: String,
+      default: 'email',
+    },
+    value: {
+      type: [String, Number],
+      required: true
     },
   },
 
@@ -50,7 +63,12 @@ export default {
           return 'MailIcon';
       }
     },
-  }
+  },
+   methods: {
+    updateValue(value) {
+      this.$emit('input', value);
+    }
+  },
 };
 </script>
 
@@ -58,12 +76,14 @@ export default {
 .input {
   color: $gray-hard;
   position: relative;
+  width: 100%;
+  height: 100%;
 
   &__field {
     border-radius: $border-4;
     min-height: 60px;
     width: 100%;
-    background: $inputs;
+    background: $inputs !important;
     border: none;
     outline: none;
     padding: 0 3rem;
@@ -73,9 +93,16 @@ export default {
 
   &__icon {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
     top: 50%;
-    left: 1%;
+    left: 15px;
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
 }
 </style>
