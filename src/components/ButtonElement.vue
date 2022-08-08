@@ -39,7 +39,7 @@
 
 <style lang="scss" scoped>
 .button {
-  min-width: 21.25rem;
+  min-width: 100%;
   min-height: 3.125rem;
   border-radius: 0.625rem;
   border: none;
