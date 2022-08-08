@@ -66,6 +66,8 @@ export default {
       switch (name) {
         case 'logo-VueLogo':
           return this.defaultData('261.76', '226.69', '0 0 261.76 226.69');
+        case 'logo-GBarberLogo':
+          return this.defaultData('231', '134', '0 0 231 134');
         default:
           return this.defaultData('20');
       }
