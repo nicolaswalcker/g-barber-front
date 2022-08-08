@@ -17,13 +17,13 @@ const routes = [
   },
   {
     path: '/register',
-    name: 'Register',
+    name: 'Cadastro',
     component: () => import('../views/Register.vue'),
   },
   {
-    path: '/register-success',
-    name: 'RegisterSuccess',
-    component: () => import('../views/RegisterSuccess.vue'),
+    path: '/success',
+    name: 'Sucesso',
+    component: () => import('../views/Success.vue'),
   },
 ];
 
