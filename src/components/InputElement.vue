@@ -2,6 +2,7 @@
   <div class="input">
     <component
       :is="returnInputIcon"
+      v-if="inputIcon"
       size="1.5x"
       class="input__icon"
     />
@@ -38,7 +39,7 @@ export default {
     },
     inputIcon: {
       type: String,
-      default: 'mail',
+      required: true,
     },
     inputName: {
       type: String,
@@ -52,16 +53,14 @@ export default {
 
   computed: {
     returnInputIcon(){
-      switch (this.inputIcon) {
-        case 'lock':
-          return 'LockIcon';
-        case 'mail':
-          return 'MailIcon';
-        case 'user':
-          return 'UserIcon';
-        default:
-          return 'MailIcon';
-      }
+      let icons = {
+        lock: LockIcon,
+        mail: MailIcon,
+        user: UserIcon,
+        default: null
+      };
+
+      return icons[this.inputIcon];
     },
   },
    methods: {

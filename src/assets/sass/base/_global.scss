@@ -16,3 +16,18 @@ html,
   width: 100%;
   background: $background;
 }
+
+.main {
+  min-height: calc(100vh - 92px);
+  width: 100%;
+  background: $background;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  padding: 1rem;
+
+  @include breakpoint(medium-up) {
+    padding: 64px 160px !important;
+    min-height: calc(100vh - 134px);
+  }
+}

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,32 @@ const routes = [
     name: 'Sucesso',
     component: () => import('../views/Success.vue'),
   },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue'),
+    beforeEnter(to, from, next) {
+      if(!store.getters['user/getUserIsLoggedIn']) {
+        next({
+          name: 'Login',
+        });
+      }
+      else {
+        next();
+      }
+    }
+  },
+  {
+    path: '/scheduling',
+    name: 'Agendamento',
+    component: () => import('../views/Scheduling.vue'),
+  },
+  {
+    path: '/create-service',
+    name: 'Criar Serviço',
+    component: () => import('../views/CreateService.vue'),
+  },
+
 ];
 
 const router = new VueRouter({

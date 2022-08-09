@@ -6,40 +6,33 @@
         type="logo"
         title="GBarberLogo"
       />
-      <form
-        enctype="multipart/formdata"
-        class="login__content-form"
-        method="post"
-        @submit.prevent="logUser"
-      >
+      <form class="login__content-form">
         <h1 class="login__content-form__title">
-          Faça seu login!
+          Criar novo serviço
         </h1>
         <article class="login__content-form__fields">
           <input-element
-            v-model="user.email"
             class="login__content-form__fields-input"
             autocomplete="username"
-            input-icon="mail"
+            input-placeholder="Nome do serviço"
+          />
+          <input-element
+            input-placeholder="Valor do serviço"
+            class="login__content-form__fields-input"
+            autocomplete="current-password"
+          />
+          <input-element
+            input-placeholder="Duração do serviço do serviço"
+            class="login__content-form__fields-input"
+            autocomplete="current-password"
           />
         </article>
         <button-element
           class="login__content-form__button"
           button-type="submit"
-          button-text="Entrar"
+          button-text="Criar serviço"
         />
-        <a
-          href="#"
-          class="login__content-form__forgot"
-        >Esqueci minha senha</a>
       </form>
-      <a
-        href="#"
-        class="login__content__create-password"
-      ><log-out-icon
-        size="1.5x"
-        class="custom-class"
-      /> Criar uma conta</a>
     </article>
     <figure class="login__image" />
   </section>
@@ -48,32 +41,9 @@
 <script>
 import ButtonElement from '../components/ButtonElement.vue';
 import InputElement from '../components/InputElement.vue';
-import { LogOutIcon } from 'vue-feather-icons';
-import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'LoginPage',
-  components: { InputElement, ButtonElement, LogOutIcon },
-  data() {
-    return {
-      user: {
-        email: '',
-      },
-    };
-  },
-  computed: {
-    ...mapGetters(['getUserIsLoggedIn'])
-  },
-  methods: {
-    ...mapActions(['loginUser']),
-
-    async logUser() {
-      const response = await this.loginUser(this.user);
-
-      if (response) {
-        this.$router.push('/');
-      }
-    },
-  },
+  components: { InputElement, ButtonElement },
 };
 </script>
 
@@ -95,7 +65,7 @@ export default {
     min-width: 50%;
     width: 780px;
     height: 100%;
-    background-image: url("../assets/img/img-login.png");
+    background-image: url('../assets/img/img-login.png');
     background-repeat: no-repeat;
     background-size: cover;
     mix-blend-mode: hard-light;
@@ -149,7 +119,7 @@ export default {
         position: relative;
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -20%;
           left: 0;
