@@ -1,11 +1,15 @@
 <template>
   <section class="main dashboard">
-    <title-element />
+    <title-element title-text="Dashboard" />
     <p class="dashboard__hour">
-      Dia 6 - Segunda-feira
+      {{ getActualDate }}
     </p>
     <dashboard-cards-list>
-      <dashboard-card-element />
+      <dashboard-card-element
+        v-for="schedule in getAllSchedules.data"
+        :key="schedule.id"
+        :schedule="schedule"
+      />
     </dashboard-cards-list>
   </section>
 </template>
@@ -14,9 +18,34 @@
 import TitleElement from '@/components/TitleElement.vue';
 import DashboardCardsList from '@/components/DashboardCardsList.vue';
 import DashboardCardElement from '@/components/DashboardCardElement.vue';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'Dashboard',
   components: { TitleElement, DashboardCardsList, DashboardCardElement },
+  computed: {
+    ...mapGetters(['getAllSchedules', 'getUser']),
+    getActualDate() {
+      let date = new Date();
+
+      let day = date.toLocaleString('pt-BR', {
+        weekday: 'long',
+      });
+
+      return `${day}`;
+    },
+  },
+
+  created() {
+    this.getSchedules();
+
+    if(this.getUser.data[0].is_admin === 0) {
+      this.$router.push('/');
+    }
+  },
+
+  methods: {
+    ...mapActions(['getSchedules']),
+  },
 };
 </script>
 

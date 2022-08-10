@@ -34,7 +34,7 @@
         >Esqueci minha senha</a>
       </form>
       <a
-        href="#"
+        href="/register"
         class="login__content__create-password"
       ><log-out-icon
         size="1.5x"

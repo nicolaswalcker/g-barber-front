@@ -39,7 +39,7 @@ export default {
     },
     inputIcon: {
       type: String,
-      required: true,
+      default: ''
     },
     inputName: {
       type: String,

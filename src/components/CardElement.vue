@@ -1,26 +1,33 @@
 <template>
-  <article class="barber-card">
+  <a
+    href="#"
+    class="barber-card"
+  >
     <section class="barber-card__content">
       <h2 class="barber-card__content-name">
         {{ service.name }}
       </h2>
       <p class="barber-card__content-infos">
-        <span class="barber-card__content-infos__text">{{ service.price }}</span>
+        <span class="barber-card__content-infos__text"><dollar-sign-icon
+          size="1.5x"
+          class="barber-card__content-infos__text__icon"
+        />R${{ service.value }}</span>
         <span class="barber-card__content-infos__text"><clock-icon
           size="1.5x"
           class="barber-card__content-infos__text__icon"
         />{{ service.duration }} minutos</span>
       </p>
     </section>
-  </article>
+  </a>
 </template>
 
 <script>
-import {  ClockIcon } from 'vue-feather-icons';
+import {  ClockIcon, DollarSignIcon } from 'vue-feather-icons';
   export default {
     name: 'CardElement',
     components: {
-      ClockIcon
+      ClockIcon,
+      DollarSignIcon
     },
     props: {
       service: {

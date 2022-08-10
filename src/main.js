@@ -9,5 +9,8 @@ new Vue({
   name: 'AppVue',
   router,
   store,
+  beforeCreate(){
+    this.$store.commit('initializeStore');
+  },
   render: (h) => h(App),
 }).$mount('#app');

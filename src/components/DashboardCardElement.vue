@@ -4,7 +4,7 @@
       <clock-icon
         size="1.5x"
         class="dashboard-card__icon"
-      /> 8:30
+      /> {{ schedule.init.slice(10, 16) }}
     </p>
     <section class="dashboard-card__content">
       <img
@@ -13,7 +13,7 @@
         class="dashboard-card__content-image"
       >
       <h2 class="dashboard-card__content-name">
-        Nicolas Walcker
+        {{ schedule.user_name }}
       </h2>
     </section>
   </article>
@@ -24,6 +24,12 @@ import { ClockIcon } from 'vue-feather-icons';
   export default {
     name: 'DashboardCardElement',
     components: { ClockIcon },
+    props: {
+      schedule: {
+        type: Object,
+        required: true,
+      },
+    }
   };
 </script>
 

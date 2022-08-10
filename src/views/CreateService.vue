@@ -6,25 +6,33 @@
         type="logo"
         title="GBarberLogo"
       />
-      <form class="login__content-form">
+      <form
+        enctype="multipart/formdata"
+        class="login__content-form"
+        method="POST"
+        @submit.prevent="sendNewService()"
+      >
         <h1 class="login__content-form__title">
           Criar novo serviço
         </h1>
         <article class="login__content-form__fields">
           <input-element
+            v-model="service.name"
             class="login__content-form__fields-input"
-            autocomplete="username"
             input-placeholder="Nome do serviço"
+            input-type="text"
           />
           <input-element
+            v-model="service.value"
             input-placeholder="Valor do serviço"
             class="login__content-form__fields-input"
-            autocomplete="current-password"
+            input-type="number"
           />
           <input-element
+            v-model="service.duration"
             input-placeholder="Duração do serviço do serviço"
             class="login__content-form__fields-input"
-            autocomplete="current-password"
+            input-type="number"
           />
         </article>
         <button-element
@@ -39,11 +47,37 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import ButtonElement from '../components/ButtonElement.vue';
 import InputElement from '../components/InputElement.vue';
 export default {
   name: 'LoginPage',
   components: { InputElement, ButtonElement },
+  data() {
+    return {
+      service: {
+        name: '',
+        value: '',
+        duration: '',
+      },
+    };
+  },
+  computed: {
+    ...mapGetters(['getUser']),
+  },
+  created() {
+    if(this.getUser.data[0].is_admin === 0) {
+      this.$router.push('/');
+    }
+  },
+  methods: {
+    ...mapActions(['createService']),
+    sendNewService() {
+      this.createService(this.service);
+      this.$router.push('/dashboard');
+    },
+  },
+
 };
 </script>
 

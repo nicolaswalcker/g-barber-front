@@ -20,4 +20,7 @@ export default {
   getServices() {
     return api.get('/service');
   },
+  getSchedules(){
+    return api.post('/schedule/index');
+  }
 };

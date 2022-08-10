@@ -8,7 +8,23 @@
         class="header__logo"
       />
     </router-link>
-    <article class="header__content">
+    <template v-if="getUser.data[0].is_admin === 1">
+      <router-link
+        class="router-links"
+        :to="{ name: 'Criar Serviço' }"
+      >
+        Criar serviço
+      </router-link>
+      <router-link
+        class="router-links"
+        :to="{ name: 'Dashboard' }"
+      >
+        Dashboard
+      </router-link>
+    </template>
+    <article
+      class="header__content"
+    >
       <div class="header__content-profile">
         <img
           src="@/assets/img/profile.jpg"
@@ -17,12 +33,15 @@
         >
         <p class="header__content-profile__infos">
           Bem vindo,
-          <span class="header__content-profile__infos-name">{{ barberName }}</span>
+          <span class="header__content-profile__infos-name">{{
+            getUser.data ? getUser.data[0].name : "Nicolas Walcker"
+          }}</span>
         </p>
       </div>
       <a
         href="#"
         class="header__content-profile__logout"
+        @click.prevent="logOff()"
       >
         <power-icon size="1.5x" />
       </a>
@@ -32,15 +51,20 @@
 
 <script>
 import { PowerIcon } from 'vue-feather-icons';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'HeaderElement',
   components: {
     PowerIcon,
   },
-  props: {
-    barberName: {
-      type: String,
-      default: 'Nicolas Walcker',
+  computed: {
+    ...mapGetters(['getUser']),
+  },
+  methods: {
+    ...mapActions(['logoutUser']),
+    logOff() {
+      this.logoutUser();
+      this.$router.push({ name: 'Login' });
     },
   },
 };
@@ -56,6 +80,19 @@ export default {
   justify-content: flex-start;
   gap: 5rem;
   padding: 1rem;
+
+  .router-links {
+    color: $orange;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+    width: auto;
+    white-space: nowrap;
+
+    &:hover {
+      color: $white;
+    }
+  }
 
   @include breakpoint(medium-up) {
     padding: 0 160px;

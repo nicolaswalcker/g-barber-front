@@ -33,6 +33,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    gap: 1rem;
 
     @include breakpoint (medium-up) {
       width: 50%;
