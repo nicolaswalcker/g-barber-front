@@ -62,10 +62,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getAllServices', 'getUser']),
+    ...mapGetters(['getAllServices', 'getUser', 'getUserIsLoggedIn']),
   },
   created() {
     this.getService();
+
+    if(!this.getUserIsLoggedIn) {
+      this.$router.push('/login');
+    }
   },
   methods: {
     ...mapActions(['getService', 'createSchedule']),
