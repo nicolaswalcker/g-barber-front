@@ -6,7 +6,12 @@
         type="logo"
         title="GBarberLogo"
       />
-      <form class="register__content-form">
+      <form
+        method="post"
+        enctype="multipart/formdata"
+        class="register__content-form"
+        @submit.prevent="registerUser"
+      >
         <ul class="register__content-form__options">
           <li class="register__content-form__options-item">
             <a
@@ -27,6 +32,7 @@
         </ul>
         <article class="register__content-form__fields">
           <input-element
+            v-model="user.name"
             input-name="username"
             input-type="username"
             input-placeholder="Nome"
@@ -35,10 +41,13 @@
             autocomplete="current-password"
           />
           <input-element
+            v-model="user.email"
             class="register__content-form__fields-input"
             autocomplete="username"
+            input-icon="mail"
           />
           <input-element
+            v-model="user.password"
             input-name="password"
             input-type="password"
             input-placeholder="Senha"
@@ -69,21 +78,42 @@
 import ButtonElement from '../components/ButtonElement.vue';
 import InputElement from '../components/InputElement.vue';
 import { ArrowLeftIcon } from 'vue-feather-icons';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'RegisterPage',
   components: { InputElement, ButtonElement, ArrowLeftIcon },
   data() {
     return {
-      isRegisterAdmin: false
+      isRegisterAdmin: false,
+      user: {
+        name: '',
+        email: '',
+        password: '',
+        is_admin: 0,
+      },
     };
   },
+  computed: {
+    ...mapGetters(['getAllServices']),
+  },
+  created() {
+    this.getService();
+  },
   methods: {
+    ...mapActions(['createUser', 'getService']),
     changeToAdmin() {
       this.isRegisterAdmin = true;
+      this.user.is_admin = 1;
     },
     changeToClient() {
       this.isRegisterAdmin = false;
-    }
+      this.user.is_admin = 0;
+    },
+
+    registerUser() {
+      this.createUser(this.user);
+      this.$router.push('/login');
+    },
   }
 };
 </script>
