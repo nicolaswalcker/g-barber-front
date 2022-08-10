@@ -27,7 +27,7 @@
               class="register__content-form__options-item__link"
               :class="{ 'active': isRegisterAdmin }"
               @click.prevent="changeToAdmin()"
-            >Sou cabeleleiro</a>
+            >Sou cabelereiro</a>
           </li>
         </ul>
         <article class="register__content-form__fields">
