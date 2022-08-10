@@ -27,22 +27,13 @@ export default {
   components: { TitleElement, DashboardCardsList, DashboardCardElement },
   computed: {
     ...mapGetters(['getAllSchedules', 'getUser']),
-    getActualDate() {
-      let date = new Date();
-
-      let day = date.toLocaleString('pt-BR', {
-        weekday: 'long',
-      });
-
-      return `${day}`;
-    },
 
     filterSchedules() {
-      if(this.getAllSchedules.data) {
+      if(this.getAllSchedules.data && this.getUser.data.is_admin === 0) {
        return this.getAllSchedules.data.filter(schedule => schedule.user_id === this.getUser.data[0].id);
       }
 
-      return [];
+      return this.getAllSchedules.data;
     },
   },
 
