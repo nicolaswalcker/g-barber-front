@@ -21,6 +21,7 @@ module.exports = {
         @import "@/assets/sass/base/_mixins.scss";
         @import "@/assets/sass/base/_utils.scss";
         @import "@/assets/sass/base/_keyframes.scss";
+        @import "@/assets/sass/base/_reset.scss";
         `,
       },
     },

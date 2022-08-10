@@ -9,9 +9,6 @@ module.exports = {
     'eslint:recommended',
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-
     // --- ESLint
     eqeqeq: ['error', 'always'],
     'dot-notation': 'error',
@@ -100,6 +97,7 @@ module.exports = {
       },
     ],
   },
+  ignorePatterns: ['/src/components/base/'],
   parserOptions: {
     parser: 'babel-eslint',
   },

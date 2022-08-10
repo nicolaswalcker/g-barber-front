@@ -1,6 +1,6 @@
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -59,7 +59,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -88,10 +87,10 @@ q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: '';
   content: none;
 }
