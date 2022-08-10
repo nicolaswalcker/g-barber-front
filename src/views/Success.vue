@@ -7,63 +7,69 @@
     />
     <article class="success__content">
       <h2 class="success__content-title">
-        Agendamento concluído
+        Cadastro concluído
       </h2>
       <p class="success__content-text">
-        Terça, dia 14 de outubro de 2022 às 10:00h com Nicolas Walcker
+        Serviço criado com sucesso
       </p>
     </article>
     <button-element
       :button-active="true"
       :button-text="'Ok'"
       class="success__button"
+      @button-action="goToHome()"
     />
   </main>
 </template>
 
 <script>
 import ButtonElement from '../components/ButtonElement.vue';
-  export default {
-    name: 'RegisterSuccess',
+export default {
+  name: 'RegisterSuccess',
   components: { ButtonElement },
-  };
+  methods: {
+    goToHome() {
+      this.$router.push('/');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .success {
+.success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+
+  &__content {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 40px;
+    text-align: center;
+    gap: 1rem;
 
-    &__content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      gap: 1rem;
-
-      &-title {
-        color: $white;
-        font-size: 30px;
-        font-weight: 500;
-        max-width: 50%;
-        line-height: 40px;
-      }
-
-      &-text {
-        color: $gray;
-        font-size: 14px;
-        font-weight: 500;
-        max-width: 70%;
-        line-height: 24px;
-      }
+    &-title {
+      color: $white;
+      font-size: 30px;
+      font-weight: 500;
+      max-width: 50%;
+      line-height: 40px;
     }
 
-    &__button {
-      min-width: 100px;
+    &-text {
+      color: $gray;
+      font-size: 14px;
+      font-weight: 500;
+      max-width: 70%;
+      line-height: 24px;
     }
   }
+
+  &__button {
+    min-width: 100px;
+  }
+}
 </style>

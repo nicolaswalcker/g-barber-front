@@ -1,16 +1,19 @@
 <template>
   <section class="main dashboard">
     <title-element title-text="Dashboard" />
-    <p class="dashboard__hour">
-      {{ getActualDate }}
-    </p>
-    <dashboard-cards-list>
+    <dashboard-cards-list v-if="getAllSchedules">
       <dashboard-card-element
-        v-for="schedule in getAllSchedules.data"
+        v-for="schedule in filterSchedules"
         :key="schedule.id"
         :schedule="schedule"
       />
     </dashboard-cards-list>
+    <p
+      v-else
+      class="dashboard__no-schedules"
+    >
+      Nenhum agendamento encontrado
+    </p>
   </section>
 </template>
 
@@ -33,14 +36,18 @@ export default {
 
       return `${day}`;
     },
+
+    filterSchedules() {
+      if(this.getAllSchedules.data) {
+       return this.getAllSchedules.data.filter(schedule => schedule.user_id === this.getUser.data[0].id);
+      }
+
+      return [];
+    },
   },
 
   created() {
     this.getSchedules();
-
-    if(this.getUser.data[0].is_admin === 0) {
-      this.$router.push('/');
-    }
   },
 
   methods: {

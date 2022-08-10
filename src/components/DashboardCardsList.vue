@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard__section">
     <p class="dashboard-cards__container-title">
-      Manhã
+      Agendamentos
     </p>
     <section class="dashboard-cards__container">
       <slot />

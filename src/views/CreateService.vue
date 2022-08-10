@@ -21,6 +21,7 @@
             class="login__content-form__fields-input"
             input-placeholder="Nome do serviço"
             input-type="text"
+            input-name="text"
           />
           <input-element
             v-model="service.value"
@@ -72,9 +73,9 @@ export default {
   },
   methods: {
     ...mapActions(['createService']),
-    sendNewService() {
-      this.createService(this.service);
-      this.$router.push('/dashboard');
+    async sendNewService() {
+      await this.createService(this.service);
+      this.$router.push('/success');
     },
   },
 

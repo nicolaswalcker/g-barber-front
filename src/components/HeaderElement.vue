@@ -15,13 +15,13 @@
       >
         Criar serviço
       </router-link>
-      <router-link
-        class="router-links"
-        :to="{ name: 'Dashboard' }"
-      >
-        Dashboard
-      </router-link>
     </template>
+    <router-link
+      class="router-links"
+      :to="{ name: 'Dashboard' }"
+    >
+      Dashboard
+    </router-link>
     <article
       class="header__content"
     >

@@ -1,17 +1,20 @@
 <template>
   <div class="scheduling main">
     <title-element title-text="Agendamento" />
-    <a
-      v-for="service in getAllServices"
-      :key="service.id"
-      class="scheduling__barber-card"
-      href="#"
-      @click.prevent="selectService(service)"
-    >
-      <p class="schedling__barber-card__name">
-        {{ service.name }}
-      </p>
-    </a>
+    <section class="scheduling__container">
+      <a
+        v-for="service in getAllServices"
+        :key="service.id"
+        :class="{ 'active': service.id === selectedService }"
+        class="scheduling__barber-card"
+        href="#"
+        @click.prevent="selectService(service)"
+      >
+        <p class="schedling__barber-card__name">
+          {{ service.name }}
+        </p>
+      </a>
+    </section>
     <section class="scheduling__fields">
       <label
         class="scheduling__fields-label"
@@ -97,6 +100,14 @@ export default {
   width: 100%;
   height: 100%;
 
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
   &__barber-card {
     background: $orange;
     display: flex;
@@ -107,6 +118,14 @@ export default {
     border-radius: 10px;
     min-width: 175px;
     min-height: 50px;
+    text-decoration: none;
+    color: $black-medium;
+    transition: all 0.2s ease;
+
+    &.active {
+      background: $black-medium;
+      color: $white;
+    }
 
     &__image {
       max-width: 32px;
