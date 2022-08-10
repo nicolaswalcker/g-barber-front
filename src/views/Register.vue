@@ -63,7 +63,7 @@
         </article>
       </form>
       <a
-        href="#"
+        href="/login"
         class="register__content-form__back"
       > <arrow-left-icon
         size="1.5x"
