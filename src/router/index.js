@@ -26,6 +26,11 @@ const routes = [
     component: () => import('../views/Success.vue'),
   },
   {
+    path: '/success-scheduling',
+    name: 'Agendamento concluído',
+    component: () => import('../views/SuccessScheduling.vue'),
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),

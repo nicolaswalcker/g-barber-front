@@ -80,12 +80,13 @@ export default {
       this.selectedService = service.id;
     },
 
-    createNewSchedule() {
-      this.createSchedule({
+    async createNewSchedule() {
+     await this.createSchedule({
         user_id: this.getUser.data[0].id,
         service_id: this.selectedService,
         init: `${this.date} ${this.hour}`,
       });
+      this.$router.push('/success-scheduling');
     },
   },
 };
