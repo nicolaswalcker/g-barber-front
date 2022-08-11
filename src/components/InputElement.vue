@@ -13,6 +13,7 @@
       :name="inputName"
       :value="value"
       v-bind="$attrs"
+      required
       @input="updateValue($event.target.value)"
     >
   </div>

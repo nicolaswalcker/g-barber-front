@@ -102,7 +102,7 @@ export default {
       try {
         const response = await api.getSchedules();
 
-        commit('setSchedules', response.data);
+        commit('setSchedules', response.data.data);
       } catch (error) {
         console.log(error);
       }

@@ -114,10 +114,14 @@ export default {
     width: 100%;
 
     &-profile {
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: flex-start;
       gap: 1rem;
+
+      @include breakpoint(medium-up) {
+        display: flex;
+      }
 
       &__image {
         max-width: 60px;

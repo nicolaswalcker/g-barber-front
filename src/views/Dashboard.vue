@@ -29,11 +29,12 @@ export default {
     ...mapGetters(['getAllSchedules', 'getUser']),
 
     filterSchedules() {
-      if(this.getAllSchedules.data && this.getUser.data.is_admin === 0) {
-       return this.getAllSchedules.data.filter(schedule => schedule.user_id === this.getUser.data[0].id);
+      if(this.getAllSchedules && this.getUser.data[0].is_admin === 1) {
+         return this.getAllSchedules;
       }
 
-      return this.getAllSchedules.data;
+     return this.getAllSchedules.filter(schedule => schedule.user_id === this.getUser.data[0].id);
+
     },
   },
 
@@ -53,9 +54,15 @@ export default {
   flex-direction: column;
   gap: 2.25rem;
   padding: 1rem;
+  min-height: calc(100vh - 58px);
 
   &__hour {
     color: $orange;
+  }
+
+  @include breakpoint(medium-up) {
+    padding: 64px 160px !important;
+    min-height: calc(100vh - 134px);
   }
 }
 </style>
